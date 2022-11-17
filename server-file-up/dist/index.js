@@ -46,18 +46,17 @@ var body_parser_1 = __importDefault(require("body-parser"));
 var app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
-app.use(express_1.default.urlencoded());
+// app.use(express.urlencoded());
 var bodyParserOptions = {
     inflate: true,
     limit: '3000kb',
     type: '*/*',
-    verify: function (req, res, buf) {
-        var _a, _b;
-        var indexSeparadorContentType = (_b = (_a = req.headers['content-type']) === null || _a === void 0 ? void 0 : _a.indexOf(';')) !== null && _b !== void 0 ? _b : -1;
-        if (indexSeparadorContentType == -1)
-            return;
-        req.buffer = buf;
-    }
+    // verify: (req: Request, res: Response, buf: Buffer) => {
+    //   const indexSeparadorContentType = req.headers['content-type']?.indexOf(';') ?? -1;
+    //   if (indexSeparadorContentType == -1)
+    //     return;    
+    //   // req.buffer = buf;
+    // }
 };
 var filesArr = [];
 app.get('/files', function (req, res) { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {

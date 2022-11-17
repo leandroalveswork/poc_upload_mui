@@ -45,20 +45,14 @@ var uploadFile = function (req, res, filesArr) { return __awaiter(void 0, void 0
         try {
             indexSeparadorContentType = (_b = (_a = req.headers['content-type']) === null || _a === void 0 ? void 0 : _a.indexOf(';')) !== null && _b !== void 0 ? _b : -1;
             if (indexSeparadorContentType == -1) {
-                console.log('dump Content Type-header = [' + req.headers['content-type'] + ']');
                 res.status(400).send('Header Content-Type invalido');
                 return [2 /*return*/];
             }
             boundaryKeyValue = req.headers['content-type'].substring(((_c = req.headers['content-type'].indexOf(';')) !== null && _c !== void 0 ? _c : -1) + 1);
-            console.log('dump boundaryKeyValue = [' + boundaryKeyValue + ']');
             boundary = boundaryKeyValue.substring(boundaryKeyValue.indexOf('boundary=') + 9);
-            console.log('dump boundary = [' + boundary + ']');
-            console.log('dump typeof req.body = [' + typeof req.body + ']');
-            console.table(req.body);
             parts = (0, parse_multipart_data_1.parse)(req.body, boundary);
             // Adicionar apenas o primeiro buffer
             filesArr.push(parts[0]);
-            console.table(filesArr);
             res.send();
         }
         catch (exc) {
